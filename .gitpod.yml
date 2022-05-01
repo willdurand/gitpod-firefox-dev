@@ -1,0 +1,40 @@
+# This image is built with the command below:
+#
+# ```
+# docker build -f .gitpod/Dockerfile -t willdurand/gitpod-firefox-dev .
+# ```
+image: willdurand/gitpod-firefox-dev:latest
+
+tasks:
+  - name: bootstrap
+    before: |
+      # This is needed to avoid an error with `./mach bootstrap` but also it is
+      # useful to store `git-cinnabar`.
+      mkdir -p ~/.mozbuild
+      # Install `git-cinnabar`.
+      [[ -d ~/.mozbuild/git-cinnabar ]] || git clone https://github.com/glandium/git-cinnabar ~/.mozbuild/git-cinnabar
+      # Source the bashrc config so that we can use `git cinnabar` right after.
+      source .bashrc.d/100-firefox-dev
+      # Install the `git-cinnabar` helper.
+      git cinnabar download
+      # Configure `bash` for the user.
+      cp .bashrc.d/100-firefox-dev ~/.bashrc.d/
+    init: |
+      # This is needed to avoid an error with `./mach build`
+      sudo apt-get update
+      curl https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py -O
+      python3 bootstrap.py --vcs=git --no-interactive
+    command: |
+      cd mozilla-unified
+      # `git-cinnabar` says we should set this configuration flag.
+      git config fetch.prune true
+      # Fetch new commits, if any.
+      git pull
+      ./mach clobber
+      ./mach build
+
+ports:
+  - port: 5900
+    onOpen: ignore
+  - port: 6080
+    onOpen: open-preview
