@@ -1,0 +1,3 @@
+# While git shouldn't track the content of the folder below,
+# we want VS Code to be able to access it.
+!mozilla-unified/
