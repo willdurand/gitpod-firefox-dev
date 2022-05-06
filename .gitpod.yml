@@ -13,19 +13,20 @@ tasks:
       # This is needed to avoid an error with `./mach bootstrap` but also it is
       # useful to store `git-cinnabar`.
       mkdir -p ~/.mozbuild
-      
+
       # Checkout `git-cinnabar` (only if needed)
       [[ -d ~/.mozbuild/git-cinnabar ]] || git clone https://github.com/glandium/git-cinnabar ~/.mozbuild/git-cinnabar
-      
+
       # Source the `bash` config so that we can use `git cinnabar` right after.
+      cd "$GITPOD_REPO_ROOT"
       source .bashrc.d/100-firefox-dev
-      
+
       # Install the `git-cinnabar` helper.
       git cinnabar download
 
       # Configure `bash` for the user.
       cp .bashrc.d/100-firefox-dev ~/.bashrc.d/
-      
+
       # Install `git-revise`
       pip install --user git-revise
     init: |
@@ -33,19 +34,19 @@ tasks:
 
       # This is needed to avoid an error with `./mach build`
       sudo apt-get update
-      
+
       # Download and execute Mozilla's bootstrap script.
       curl https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py -O
       python3 bootstrap.py --vcs=git --no-interactive
     command: |
-      cd /workspace/gitpod-firefox-dev/mozilla-unified
+      cd "$GITPOD_REPO_ROOT/mozilla-unified"
 
       # `git-cinnabar` says we should set this configuration flag.
       git config fetch.prune true
-      
+
       # Fetch new commits, if any.
       git pull
-      
+
       # Build Firefox.
       ./mach clobber
       ./mach build
