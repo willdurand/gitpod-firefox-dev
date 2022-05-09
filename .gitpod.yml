@@ -52,7 +52,21 @@ tasks:
       ./mach build
 
 ports:
+  # mochitest
+  - port: 2828
+    onOpen: ignore
+  # mochitest
+  - port: 4443
+    onOpen: ignore
+  # VNC
   - port: 5900
     onOpen: ignore
+  # VNC (web view)
   - port: 6080
     onOpen: open-preview
+  # mochitest
+  - port: 8888
+    onOpen: ignore
+  # mochitest
+  - port: 9988
+    onOpen: ignore
