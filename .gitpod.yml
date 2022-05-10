@@ -55,21 +55,27 @@ ports:
   # mochitest
   - port: 2828
     onOpen: ignore
-  # mochitest
+# mochitest
   - port: 4443
     onOpen: ignore
-  # VNC
+# VNC
   - port: 5900
     onOpen: ignore
-  # VNC (web view)
-  # This is the port you should be using to interact with Firefox. It is a bit
-  # annoying to have it opened at every workspace startup, though, so it is
-  # also ignored.
+# VNC (web view)
+# This is the port you should be using to interact with Firefox. It is a bit
+# annoying to have it open at every workspace startup, though, so it is now
+# ignored.
   - port: 6080
     onOpen: ignore
-  # mochitest
+# mochitest
   - port: 8888
     onOpen: ignore
-  # mochitest
+# mochitest
   - port: 9988
     onOpen: ignore
+
+vscode:
+  extensions:
+    - dbaeumer.vscode-eslint
+    - ecmel.vscode-html-css
+    - esbenp.prettier-vscode
