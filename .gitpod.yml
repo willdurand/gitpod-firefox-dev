@@ -62,8 +62,11 @@ ports:
   - port: 5900
     onOpen: ignore
   # VNC (web view)
+  # This is the port you should be using to interact with Firefox. It is a bit
+  # annoying to have it opened at every workspace startup, though, so it is
+  # also ignored.
   - port: 6080
-    onOpen: open-preview
+    onOpen: ignore
   # mochitest
   - port: 8888
     onOpen: ignore
