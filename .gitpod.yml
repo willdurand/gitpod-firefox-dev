@@ -49,7 +49,6 @@ tasks:
       git pull
 
       # Build Firefox.
-      ./mach clobber
       ./mach build
 
 ports:
