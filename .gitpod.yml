@@ -23,12 +23,17 @@ tasks:
 
       # Install the `git-cinnabar` helper.
       git cinnabar download
+      
+      # `git-cinnabar` says we should set this configuration flag.
+      cd "$GITPOD_REPO_ROOT/mozilla-unified"
+      git config fetch.prune true
 
       # Configure `bash` for the user.
       cp .bashrc.d/100-firefox-dev ~/.bashrc.d/
 
       # Install `git-revise`
       pip install --user git-revise
+
     init: |
       # Everything below will be executed when we create a new workspace.
 
@@ -40,9 +45,6 @@ tasks:
       python3 bootstrap.py --vcs=git --no-interactive
     command: |
       cd "$GITPOD_REPO_ROOT/mozilla-unified"
-
-      # `git-cinnabar` says we should set this configuration flag.
-      git config fetch.prune true
 
       # Fetch new commits, if any.
       git pull
