@@ -46,7 +46,7 @@ tasks:
       cd "$GITPOD_REPO_ROOT/mozilla-unified"
 
       # Fetch new commits, if any.
-      git pull
+      git fetch
 
       # Build Firefox.
       ./mach build
