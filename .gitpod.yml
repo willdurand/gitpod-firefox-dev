@@ -11,17 +11,17 @@ tasks:
       # Everything below will be executed every time we open Gitpod (either any
       # existing workspace OR a completely new one).
 
-      # This is needed to avoid an error with `./mach bootstrap` but also it is
-      # useful to store `git-cinnabar`.
-      mkdir -p ~/.mozbuild
-
-      # Checkout `git-cinnabar` (only if needed)
-      [[ -d ~/.mozbuild/git-cinnabar ]] || git clone https://github.com/glandium/git-cinnabar ~/.mozbuild/git-cinnabar
-
       # Configure `bash` for the user, and source the `bash` config so that we can use `git cinnabar` right after.
       cd "$GITPOD_REPO_ROOT"
       cp .bashrc.d/100-firefox-dev ~/.bashrc.d/
       source ~/.bashrc.d/100-firefox-dev
+
+      # This is needed to avoid an error with `./mach bootstrap` but also it is
+      # useful to store `git-cinnabar`.
+      mkdir -p "$MOZBUILD_STATE_PATH"
+
+      # Checkout `git-cinnabar` (only if needed)
+      [[ -d "$MOZBUILD_STATE_PATH/git-cinnabar" ]] || git clone https://github.com/glandium/git-cinnabar "$MOZBUILD_STATE_PATH/git-cinnabar"
 
       # Install the `git-cinnabar` helper.
       git cinnabar download
