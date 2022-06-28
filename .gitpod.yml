@@ -8,48 +8,52 @@ image: willdurand/gitpod-firefox-dev:latest
 tasks:
   - name: bootstrap
     before: |
-      # Everything below will be executed every time we open Gitpod (either any.# existing workspace OR a completely new one).
+      # Everything below will be executed every time we open Gitpod (either any
+      # existing workspace OR a completely new one).
 
-      # This is needed to avoid an error with `./mach bootstrap` but also it is
-      # useful to store `git-cinnabar`.
-      mkdir -p ~/.mozbuild
-
-      # Checkout `git-cinnabar` (only if needed)
-      [[ -d ~/.mozbuild/git-cinnabar ]] || git clone https://github.com/glandium/git-cinnabar ~/.mozbuild/git-cinnabar
-
-      # Source the `bash` config so that we can use `git cinnabar` right after.
+      # Configure `bash` for the user, and source the `bash` config
       cd "$GITPOD_REPO_ROOT"
-      source .bashrc.d/100-firefox-dev
-
-      # Install the `git-cinnabar` helper.
-      git cinnabar download
-
-      # Configure `bash` for the user.
       cp .bashrc.d/100-firefox-dev ~/.bashrc.d/
+      source ~/.bashrc.d/100-firefox-dev
 
-      # Install `git-revise`
-      pip install --user git-revise
     init: |
       # Everything below will be executed when we create a new workspace.
 
       # This is needed to avoid an error with `./mach build`
       sudo apt-get update
 
+      # This is needed to avoid an error with `./mach bootstrap` but also it is
+      # useful to store `git-cinnabar`.
+      mkdir -p "$MOZBUILD_STATE_PATH"
+
+      # Checkout `git-cinnabar`
+      git clone https://github.com/glandium/git-cinnabar "$MOZBUILD_STATE_PATH/git-cinnabar"
+
+      # Install the `git-cinnabar` helper.
+      git cinnabar download
+
+      # Install `git-revise`
+      pip install --user git-revise
+
       # Download and execute Mozilla's bootstrap script.
       curl https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py -O
       python3 bootstrap.py --vcs=git --no-interactive
-    command: |
-      cd "$GITPOD_REPO_ROOT/mozilla-unified"
 
       # `git-cinnabar` says we should set this configuration flag.
+      cd "$GITPOD_REPO_ROOT/mozilla-unified"
       git config fetch.prune true
 
       # Fetch new commits, if any.
       git pull
 
       # Build Firefox.
-      ./mach clobber
       ./mach build
+
+    command: |
+      cd "$GITPOD_REPO_ROOT/mozilla-unified"
+
+      # Run Firefox
+      ./mach run
 
 ports:
   # mochitest
