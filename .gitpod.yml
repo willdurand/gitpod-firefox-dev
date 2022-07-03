@@ -27,6 +27,10 @@ tasks:
       }
       [[ ! -z "${FIREFOX_TRY_USERNAME}" ]] && [[ ! -z "${FIREFOX_TRY_SSH_KEY}" ]] && configure_try_credentials
 
+      # Store the MozPhab credentials inside the workspace, so that they are restored when the workspace is re-opened.
+      touch /workspace/.arcrc
+      [[ ! -z "${FIREFOX_PHABRICATOR_API_TOKEN}" ]] && echo "{\"hosts\": {\"https://phabricator.services.mozilla.com/api/\": {\"token\": \"${FIREFOX_PHABRICATOR_API_TOKEN}\"}}}" > ~/.arcrc
+
     init: |
       # Everything below will be executed when we create a new workspace.
 

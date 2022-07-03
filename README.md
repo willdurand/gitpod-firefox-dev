@@ -28,3 +28,11 @@ For this, define the following environement variables in your Gitpod account:
 - **FIREFOX_TRY_SSH_KEY**: the private ssh key of your try server account. The key must be formatted
   with '\n' for each newline.
 
+### MozPhab credentials
+
+[Phabricator](https://wiki.mozilla.org/Phabricator#Phabricator_at_Mozilla) is used for Firefox's code reviews.
+The `moz-phab` command-line tool comes pre-installed in the workspace, but it needs an API key to work properly.
+
+To configure `moz-phab` with your own credentials, define the following environement variables in your Gitpod account:
+
+- **FIREFOX_PHABRICATOR_API_TOKEN**: your Phabricator API Token, typically retrieved from [https://phabricator.services.mozilla.com/conduit/login/](https://phabricator.services.mozilla.com/conduit/login/).
