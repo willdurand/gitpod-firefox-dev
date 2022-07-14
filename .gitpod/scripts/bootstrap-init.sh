@@ -5,9 +5,6 @@ set -xeuo pipefail
 # This is needed to avoid an error with `./mach build`.
 sudo apt-get update
 
-# Make sure we have the right environment loaded.
-source ~/.bashrc.d/100-firefox-dev
-
 # This is needed to avoid an error with `./mach bootstrap` but also it is
 # useful to store `git-cinnabar`.
 mkdir -p "$MOZBUILD_STATE_PATH"

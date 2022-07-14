@@ -2,11 +2,6 @@
 
 set -xeuo pipefail
 
-# Configure `bash` for the user, and source the `bash` config.
-cd "$GITPOD_REPO_ROOT" || exit 2
-cp .bashrc.d/100-firefox-dev ~/.bashrc.d/
-source ~/.bashrc.d/100-firefox-dev
-
 # Try server: if both FIREFOX_TRY_USERNAME and FIREFOX_TRY_SSH_KEY environment
 # variables are present, configure the credentials for pushing to try.
 #
