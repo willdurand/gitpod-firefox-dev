@@ -15,8 +15,8 @@ git clone https://github.com/glandium/git-cinnabar "$MOZBUILD_STATE_PATH/git-cin
 # Install the `git-cinnabar` helper.
 git cinnabar download
 
-# Install `git-revise`
-pip install --user git-revise
+# Install some python tools like `git-revise` and `moz-phab`.
+pip install --user git-revise MozPhab
 
 # Download and execute Mozilla's bootstrap script.
 curl https://hg.mozilla.org/mozilla-central/raw-file/default/python/mozboot/bin/bootstrap.py -O
