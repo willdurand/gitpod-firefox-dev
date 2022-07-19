@@ -1,6 +1,6 @@
 # gitpod-firefox-dev
 
-[![CI](https://github.com/willdurand/gitpod-firefox-dev/actions/workflows/ci.yml/badge.svg?event=branch_protection_rule)](https://github.com/willdurand/gitpod-firefox-dev/actions/workflows/ci.yml)
+[![CI](https://github.com/willdurand/gitpod-firefox-dev/actions/workflows/ci.yml/badge.svg)](https://github.com/willdurand/gitpod-firefox-dev/actions/workflows/ci.yml)
 
 This repository contains a proof of concept to develop Firefox using
 [Gitpod.io][].
