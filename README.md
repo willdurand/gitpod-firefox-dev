@@ -1,5 +1,7 @@
 # gitpod-firefox-dev
 
+[![CI](https://github.com/willdurand/gitpod-firefox-dev/actions/workflows/ci.yml/badge.svg?event=branch_protection_rule)](https://github.com/willdurand/gitpod-firefox-dev/actions/workflows/ci.yml)
+
 This repository contains a proof of concept to develop Firefox using
 [Gitpod.io][].
 
@@ -39,8 +41,9 @@ To configure `moz-phab` with your own credentials, define the following
 environment variables in your Gitpod account:
 
 - **FIREFOX_PHABRICATOR_API_TOKEN**: your Phabricator API Token, typically
-  retrieved from https://phabricator.services.mozilla.com/conduit/login/
+  retrieved from [phabricator.services.mozilla.com/conduit/login/][conduit]
 
+[conduit]: https://phabricator.services.mozilla.com/conduit/login/
 [gitpod.io]: https://gitpod.io/
 [wiki-phabricator]: https://wiki.mozilla.org/Phabricator#Phabricator_at_Mozilla
 [wiki-try-access]:
