@@ -13,7 +13,7 @@ mkdir -p "$MOZBUILD_STATE_PATH"
 git clone https://github.com/glandium/git-cinnabar "$MOZBUILD_STATE_PATH/git-cinnabar"
 
 # Install the `git-cinnabar` helper.
-git cinnabar download
+$MOZBUILD_STATE_PATH/git-cinnabar/download.py
 
 # Install some python tools like `git-revise` and `moz-phab`.
 pip install --user git-revise MozPhab
